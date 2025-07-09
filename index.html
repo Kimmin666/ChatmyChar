@@ -11,8 +11,6 @@
     <!-- React and ReactDOM CDNs -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <!-- Babel for JSX transformation in browser (for development/simple deployment) -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
         /* Custom font application */
@@ -29,23 +27,25 @@
 <body>
     <div id="root"></div>
 
-    <script type="text/babel">
+    <script>
         // StickerDecoration Component - For adding cute emoji-like decorations
-        const StickerDecoration = ({ emoji, top, left, rotate, size, zIndex = 0, opacity = 0.7 }) => (
-            <div
-                className="absolute"
-                style={{
-                    top: `${top}%`,
-                    left: `${left}%`,
-                    transform: `rotate(${rotate}deg)`,
-                    fontSize: `${size}px`,
-                    zIndex: zIndex,
-                    opacity: opacity,
-                }}
-            >
-                {emoji}
-            </div>
-        );
+        const StickerDecoration = ({ emoji, top, left, rotate, size, zIndex = 0, opacity = 0.7 }) => {
+            return React.createElement(
+                "div",
+                {
+                    className: "absolute",
+                    style: {
+                        top: `${top}%`,
+                        left: `${left}%`,
+                        transform: `rotate(${rotate}deg)`,
+                        fontSize: `${size}px`,
+                        zIndex: zIndex,
+                        opacity: opacity,
+                    },
+                },
+                emoji
+            );
+        };
 
         // Character Data (Moved outside components for easier management)
         const allCharactersData = {
@@ -77,7 +77,7 @@
                 hardest: "อดีต(ตัดเพื่อนไม่ดี)",
                 management: "พยายามหลีกหนี(ติดเกม), รับช่วยคนรอบข้าง",
                 familyStructure: "แม่(แยก), พ่อ(ไม่สนิท), ลูก(เมฆ/คัส), คนรัก(เจฟ/เจมส์), พี่(ไมค์)",
-                imageUrl: "📥", // <--- วางลิงก์รูปภาพของมิกซ์ที่นี่
+                imageUrl: "https://i.postimg.cc/DZmKnmDK/1904-20250709160230.png", // <--- วางลิงก์รูปภาพของมิกซ์ที่นี่
             },
             jeff: {
                 id: 'jeff',
@@ -102,7 +102,7 @@
                 emotionExpression: "ตื่นเต้น(ยิ้มมุมปาก/ชมเชย), โกรธ(น้ำเสียงแข็ง/จ้อง/ดึง/กอด/จูบ/กระซิบ)",
                 speechStyle: "ตรง, ชัดเจน, กระชับ, เย็นชา, จริงจัง, ใช้เหตุผล/ตรรกะ, ไม่ค่อยแสดงความรู้สึก(ผ่านการกระทำ), สุภาพ, เป็นทางการ, ไม่เยิ่นเย้อ",
                 pronouns: "ตนเอง 'ผม', คนอื่น 'คุณ[ชื่อ]'",
-                imageUrl: "📥", // <--- วางลิงก์รูปภาพของเจฟที่นี่
+                imageUrl: "https://i.postimg.cc/CM3drVBK/1904-20250709160232.png", // <--- วางลิงก์รูปภาพของเจฟที่นี่
             },
             james: {
                 id: 'james',
@@ -121,7 +121,7 @@
                 response: "อดีต-โหมงาน; ปัจจุบัน-อ่อนโยน/ใส่ใจ/เห็นอกเห็นใจ/ร่าเริง/มีชีวิตชีวา",
                 professionalContext: "CEO, มีวิสัยทัศน์, บ.ใหญ่/มีอิทธิพล, จริงจัง/มุ่งมั่น(สังคม), กังวลความเสี่ยง/ระมัดระวัง",
                 pronouns: "ตนเอง 'ผม', คนอื่น 'คุณ[ชื่อ]'",
-                imageUrl: "📥", // <--- วางลิงก์รูปภาพของเจมส์ที่นี่
+                imageUrl: "https://i.postimg.cc/HnyD8RdZ/1904-20250709160235.png", // <--- วางลิงก์รูปภาพของเจมส์ที่นี่
             },
             mike: {
                 id: 'mike',
@@ -152,7 +152,7 @@
                 speechStyle: "พูดน้อย, ตรง, กระชับ, ลงท้าย'ครับ'(ทั่วไป), ขี้เล่น/ประชด/เป็นกันเอง(สนิท), มีระเบียบ, ชอบสมบูรณ์แบบ, จู้จี้(ห่วง), ใจเย็น, อดทน, หมดอดทน(ทำผิดซ้ำ)",
                 pronouns: "ตนเอง 'ไมค์', เรียกไมค์ 'คุณไมค์'/'ไมค์', คนอื่นตามสถานการณ์(ชื่อเล่น/ชื่อจริง/สุภาพ)",
                 specificBehaviors: "ช่างสังเกต, จู้จี้เรื่องสะอาด/ระเบียบ, ใส่ใจรายละเอียด, ทำอาหารเก่ง",
-                imageUrl: "📥", // <--- วางลิงก์รูปภาพของไมค์ที่นี่
+                imageUrl: "https://i.postimg.cc/XNGpgvvh/1904-20250709160237.png", // <--- วางลิงก์รูปภาพของไมค์ที่นี่
             },
             ting: {
                 id: 'ting',
@@ -178,7 +178,7 @@
                 workSocial: "เพื่อน/พันธมิตรดี, ร่วมงาน/ให้กำลังใจ/ปรึกษา",
                 workWorries: "กลัวไม่มีงาน, กลัวพ่อแม่ไม่สบาย, กลัวไม่มีเงิน",
                 pronouns: "ตนเอง 'ติ้ง', เรียกไมค์ 'คุณไมค์'/'ไมค์', คนอื่นตามสถานการณ์(ชื่อเล่น/ชื่อจริง/สุภาพ)",
-                imageUrl: "📥", // <--- วางลิงก์รูปภาพของติ้งที่นี่
+                imageUrl: "https://i.postimg.cc/yWCqmjNV/1904-20250709160240.png", // <--- วางลิงก์รูปภาพของติ้งที่นี่
             },
             mek_kus: { id: 'mek_kus', name: "เมฆ / คัส", relationship: "ลูกบุญธรรมมิกซ์", role: "สมาชิกครอบครัวใหม่", imageUrl: "📥" }, // <--- วางลิงก์รูปภาพของเมฆ/คัสที่นี่
             so: {
@@ -267,62 +267,788 @@
         const MiniCharacterProfile = ({ character, onClose }) => {
             if (!character) return null;
 
-            return (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-xl shadow-xl p-6 max-w-sm w-full relative border-2 border-pink-400">
-                        <button
-                            onClick={onClose}
-                            className="absolute top-3 right-3 bg-red-400 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold hover:bg-red-500 transition-colors duration-200 z-10"
-                        >
-                            X
-                        </button>
-
-                        <div className="flex flex-col items-center text-center font-mali">
-                            <img
-                                src={character.imageUrl}
-                                alt={`รูปภาพของ ${character.name}`}
-                                className="w-24 h-24 rounded-full object-cover border-2 border-purple-300 mb-3 shadow-md"
-                                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/100x100/cccccc/333333?text=รูป"; }}
-                            />
-                            <h3 className="text-2xl font-bold text-purple-700 mb-2">{character.name}</h3>
-                            {character.general?.age && <p className="text-md text-gray-700"><span className="font-semibold text-purple-600">อายุ:</span> {character.general.age} ปี</p>}
-                            {character.occupation && <p className="text-md text-gray-700"><span className="font-semibold text-purple-600">อาชีพ:</span> {character.occupation}</p>}
-                            {character.mbti && <p className="text-md text-gray-700"><span className="font-semibold text-purple-600">MBTI:</span> {character.mbti}</p>}
-                            {character.personality && (
-                                <p className="text-sm text-gray-600 mt-2 line-clamp-3">
-                                    <span className="font-semibold text-purple-600">บุคลิก:</span> {character.personality.split(';')[0]}...
-                                </p>
-                            )}
-                            {character.catchphrase && (
-                                <p className="text-sm text-gray-600 mt-2 italic">
-                                    "{character.catchphrase}"
-                                </p>
-                            )}
-                        </div>
-                    </div>
-                </div>
+            return React.createElement(
+                "div",
+                { className: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" },
+                React.createElement(
+                    "div",
+                    { className: "bg-white rounded-xl shadow-xl p-6 max-w-sm w-full relative border-2 border-pink-400" },
+                    React.createElement(
+                        "button",
+                        {
+                            onClick: onClose,
+                            className: "absolute top-3 right-3 bg-red-400 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold hover:bg-red-500 transition-colors duration-200 z-10",
+                        },
+                        "X"
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "flex flex-col items-center text-center font-mali" },
+                        React.createElement("img", {
+                            src: character.imageUrl,
+                            alt: `รูปภาพของ ${character.name}`,
+                            className: "w-24 h-24 rounded-full object-cover border-2 border-purple-300 mb-3 shadow-md",
+                            onError: (e) => { e.target.onerror = null; e.target.src = "https://placehold.co/100x100/cccccc/333333?text=รูป"; },
+                        }),
+                        React.createElement("h3", { className: "text-2xl font-bold text-purple-700 mb-2" }, character.name),
+                        character.general?.age && React.createElement("p", { className: "text-md text-gray-700" }, React.createElement("span", { className: "font-semibold text-purple-600" }, "อายุ:"), " ", character.general.age, " ปี"),
+                        character.occupation && React.createElement("p", { className: "text-md text-gray-700" }, React.createElement("span", { className: "font-semibold text-purple-600" }, "อาชีพ:"), " ", character.occupation),
+                        character.mbti && React.createElement("p", { className: "text-md text-gray-700" }, React.createElement("span", { className: "font-semibold text-purple-600" }, "MBTI:"), " ", character.mbti),
+                        character.personality && (
+                            React.createElement(
+                                "p",
+                                { className: "text-sm text-gray-600 mt-2 line-clamp-3" },
+                                React.createElement("span", { className: "font-semibold text-purple-600" }, "บุคลิก:"),
+                                " ",
+                                character.personality.split(';')[0],
+                                "..."
+                            )
+                        ),
+                        character.catchphrase && (
+                            React.createElement(
+                                "p",
+                                { className: "text-sm text-gray-600 mt-2 italic" },
+                                `"${character.catchphrase}"`
+                            )
+                        )
+                    )
+                )
             );
         };
 
         // Character Profile Component (Full Profile)
         const CharacterProfile = ({ character }) => {
-            if (!character) return <p className="text-center text-red-500">ไม่พบข้อมูลตัวละคร</p>;
+            if (!character) return React.createElement("p", { className: "text-center text-red-500" }, "ไม่พบข้อมูลตัวละคร");
 
             const renderSection = (title, content) => {
                 if (!content || (typeof content === 'object' && Object.keys(content).length === 0)) return null;
 
-                return (
-                    <div className="mt-4">
-                        <h3 className="text-xl font-semibold text-purple-600 mb-1">{title}:</h3>
-                        {typeof content === 'string' ? (
-                            <p className="text-gray-700 leading-relaxed">{content}</p>
-                        ) : (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 text-lg">
-                                {Object.entries(content).map(([key, value]) => (
-                                    <p key={key}><span className="font-semibold text-purple-500 capitalize">
-                                        {key === 'age' ? 'อายุ' :
-                                         key === 'height' ? 'สูง' :
-                                         key === 'build' ? 'รูปร่าง' :
-                                         key === 'skin' ? 'ผิว' :
-                                         key === 'hair' ? 'ผม' :
-                         
+                return React.createElement(
+                    "div",
+                    { className: "mt-4" },
+                    React.createElement("h3", { className: "text-xl font-semibold text-purple-600 mb-1" }, title, ":"),
+                    typeof content === 'string' ? (
+                        React.createElement("p", { className: "text-gray-700 leading-relaxed" }, content)
+                    ) : (
+                        React.createElement(
+                            "div",
+                            { className: "grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 text-lg" },
+                            Object.entries(content).map(([key, value]) =>
+                                React.createElement(
+                                    "p",
+                                    { key: key },
+                                    React.createElement(
+                                        "span",
+                                        { className: "font-semibold text-purple-500 capitalize" },
+                                        key === 'age' ? 'อายุ' :
+                                        key === 'height' ? 'สูง' :
+                                        key === 'build' ? 'รูปร่าง' :
+                                        key === 'skin' ? 'ผิว' :
+                                        key === 'hair' ? 'ผม' :
+                                        key === 'eyes' ? 'ตา' :
+                                        key === 'nose' ? 'จมูก' :
+                                        key === 'dress' ? 'การแต่งกาย' :
+                                        key === 'face' ? 'ใบหน้า' :
+                                        key === 'chest' ? 'หน้าอก' :
+                                        key === 'body' ? 'สัดส่วน' : key,
+                                        ":"
+                                    ),
+                                    " ",
+                                    value
+                                )
+                            )
+                        )
+                    )
+                );
+            };
+
+            return React.createElement(
+                "div",
+                { className: "flex flex-col md:flex-row items-center md:items-start gap-6 p-4 bg-purple-50 rounded-lg shadow-inner" },
+                React.createElement(
+                    "div",
+                    { className: "flex-shrink-0" },
+                    React.createElement("img", {
+                        src: character.imageUrl,
+                        alt: `รูปภาพของ ${character.name}`,
+                        className: "w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-purple-300 shadow-md",
+                        onError: (e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x400/cccccc/333333?text=ไม่พบรูปภาพ"; },
+                    })
+                ),
+                React.createElement(
+                    "div",
+                    { className: "flex-grow text-center md:text-left" },
+                    React.createElement("h2", { className: "text-4xl font-bold text-purple-700 mb-2" }, character.name),
+                    renderSection("ข้อมูลทั่วไป", character.general),
+                    character.mbti && React.createElement("p", { className: "text-lg mb-2" }, React.createElement("span", { className: "font-semibold text-purple-600" }, "MBTI:"), " ", character.mbti),
+                    character.occupation && React.createElement("p", { className: "text-lg mb-2" }, React.createElement("span", { className: "font-semibold text-purple-600" }, "อาชีพ:"), " ", character.occupation),
+                    character.catchphrase && React.createElement("p", { className: "text-lg mb-2" }, React.createElement("span", { className: "font-semibold text-purple-600" }, "คำพูดติดปาก:"), " \"", character.catchphrase, "\""),
+                    renderSection("ภูมิหลัง", character.background),
+                    renderSection("เป้าหมาย", character.goal),
+                    renderSection("บุคลิก", character.personality),
+                    renderSection("งานอดิเรก/ความสนใจ", character.hobbies),
+                    renderSection("ความรู้สึก/จิตใจ", character.feelings),
+                    renderSection("สิ่งที่ชอบ", character.likes),
+                    renderSection("สิ่งที่ไม่ชอบ", character.dislikes),
+                    renderSection("ค่านิยม", character.values),
+                    renderSection("ทักษะ", character.skills),
+                    renderSection("จุดแข็ง", character.strengths),
+                    renderSection("จุดอ่อน", character.weaknesses),
+                    renderSection("เสน่ห์", character.charm),
+                    renderSection("สถานะปัจจุบัน", character.currentStatus),
+                    renderSection("สิ่งที่สำคัญที่สุด", character.mostImportant),
+                    renderSection("สิ่งที่ยากที่สุด", character.hardest),
+                    renderSection("สภาพจิตใจ", character.mentalState),
+                    renderSection("กิจวัตร/อดิเรก", character.routine),
+                    renderSection("การแสดงอารมณ์", character.emotionExpression),
+                    renderSection("สไตล์การพูด", character.speechStyle),
+                    renderSection("สรรพนาม", character.pronouns),
+                    renderSection("โครงสร้างครอบครัว", character.familyStructure),
+                    renderSection("การศึกษา", character.education),
+                    renderSection("ความซับซ้อน", character.complexity),
+                    renderSection("ความฝันในวัยเด็ก", character.childhoodDream),
+                    renderSection("เมื่ออยู่คนเดียว", character.whenAlone),
+                    renderSection("สไตล์การแต่งกาย", character.dressStyle),
+                    renderSection("สีที่ชอบ", character.favColors),
+                    renderSection("พฤติกรรมเฉพาะ", character.specificBehaviors),
+                    renderSection("ความหมายของชื่อ", character.nameMeaning),
+                    renderSection("บทบาท", character.role),
+                    renderSection("ความคิด", character.thoughts),
+                    renderSection("สำคัญกว่ากฎ", character.importantOverRules),
+                    renderSection("การจัดการ", character.management),
+                    renderSection("สถานการณ์", character.situations),
+                    renderSection("การตอบสนอง", character.response),
+                    renderSection("บริบททางอาชีพ", character.professionalContext),
+                    renderSection("ครอบครัว", character.family),
+                    renderSection("คนที่เห็นอกเห็นใจ", character.sympathy),
+                    renderSection("ความคิดเกี่ยวกับงาน", character.workThoughts),
+                    renderSection("สถานที่ทำงาน", character.workplace),
+                    renderSection("สังคมการทำงาน", character.workSocial),
+                    renderSection("ความกังวลเกี่ยวกับงาน", character.workWorries)
+                )
+            );
+        };
+
+        // Relationship Chart Component
+        const RelationshipChart = ({ onCharacterClick }) => {
+            const chartCharacters = [
+                { id: 'mix', name: allCharactersData.mix.name, emoji: '🌸', color: 'bg-pink-200', borderColor: 'border-pink-400' },
+                { id: 'jeff', name: allCharactersData.jeff.name, emoji: '🤵', color: 'bg-purple-200', borderColor: 'border-purple-400' },
+                { id: 'james', name: allCharactersData.james.name, emoji: '💼', color: 'bg-purple-200', borderColor: 'border-purple-400' },
+                { id: 'mike', name: allCharactersData.mike.name, emoji: '👨‍🍳', color: 'bg-blue-200', borderColor: 'border-blue-400' },
+                { id: 'ting', name: allCharactersData.ting.name, emoji: '🎨', color: 'bg-teal-200', borderColor: 'border-teal-400' },
+                { id: 'mek_kus', name: allCharactersData.mek_kus.name, emoji: '🙇🏻‍♂️', color: 'bg-yellow-200', borderColor: 'border-yellow-400' },
+                { id: 'so', name: allCharactersData.so.name, emoji: '🏰', color: 'bg-green-200', borderColor: 'border-green-400' },
+                { id: 'nice', name: allCharactersData.nice.name, emoji: '🧑‍🤝‍🧑', color: 'bg-green-200', borderColor: 'border-green-400' },
+                { id: 'mark', name: allCharactersData.mark.name, emoji: '🖼', color: 'bg-orange-200', borderColor: 'border-orange-400' },
+                { id: 'arling', name: allCharactersData.arling.name, emoji: '👩‍💼', color: 'bg-red-200', borderColor: 'border-red-400' },
+                { id: 'tham', name: allCharactersData.tham.name, emoji: '⚖️', color: 'bg-gray-200', borderColor: 'border-gray-400' },
+                { id: 'safe', name: allCharactersData.safe.name, emoji: '🐶', color: 'bg-red-200', borderColor: 'border-red-400' },
+                { id: 'boss', name: allCharactersData.boss.name, emoji: '🐒', color: 'bg-red-200', borderColor: 'border-red-400' },
+            ];
+
+            const relationshipsData = [
+                { from: 'jeff', to: 'mix', type: 'คนรัก (แต่งงาน)', icon: '❤️', color: 'text-red-500' },
+                { from: 'james', to: 'mix', type: 'คนรัก (แต่งงาน)', icon: '❤️', color: 'text-red-500' },
+                { from: 'jeff', to: 'james', type: 'เพื่อนเท่านั้น', icon: '🤝', color: 'text-blue-500' },
+                { from: 'mike', to: 'ting', type: 'แฟนกัน', icon: '💖', color: 'text-pink-500' },
+                { from: 'mike', to: 'safe', type: 'เพื่อนร่วมงาน', icon: '👥', color: 'text-gray-500' },
+                { from: 'mike', to: 'boss', type: 'เพื่อนเก่า', icon: '👥', color: 'text-gray-500' },
+                { from: 'safe', to: 'mix', type: 'แอบชอบมิกซ์ข้างเดียว', icon: '💔', color: 'text-orange-500' },
+                { from: 'boss', to: 'mix', type: 'แอบชอบมิกซ์ข้างเดียว', icon: '💔', color: 'text-orange-500' },
+                { from: 'ting', to: 'so', type: 'เพื่อนสนิท (เล่นเกม)', icon: '🎮', color: 'text-blue-500' },
+                { from: 'ting', to: 'mix', type: 'เพื่อนสนิท (รสนิยมคล้าย)', icon: '👯‍♀️', color: 'text-blue-500' },
+                { from: 'ting', to: 'mark', type: 'เพื่อนสนิท (นิสัยคล้าย) / สนับสนุนศิลปะ', icon: '🤝', color: 'text-blue-500' },
+                { from: 'mix', to: 'mek_kus', type: 'ลูกบุญธรรม', icon: '👨‍👩‍👧‍👦', color: 'text-green-500' },
+                { from: 'so', to: 'mix', type: 'เพื่อนสมัยอนุบาล', icon: '🧒', color: 'text-blue-500' },
+                { from: 'so', to: 'nice', type: 'ฝาแฝด (โซเป็นพี่, ไนซ์เป็นน้อง)', icon: '🧑‍🤝‍🧑', color: 'text-green-500' },
+                { from: 'so', to: 'jeff', type: 'จ้างเป็นจิตแพทย์/บอดี้การ์ดดูแลมิกซ์', icon: '🛡️', color: 'text-purple-500' },
+                { from: 'so', to: 'james', type: 'โครงการ รพ. ร่วมกัน', icon: '🏥', color: 'text-gray-500' },
+                { from: 'nice', to: 'mix', type: 'เพื่อนสมัยอนุบาล', icon: '🧒', color: 'text-blue-500' },
+                { from: 'mark', to: 'mix', type: 'เพื่อน / สนับสนุนศิลปะ', icon: '🎨', color: 'text-blue-500' },
+                { from: 'arling', to: 'jeff', type: 'น้องสาวจากสถานกำพร้า / เลขา', icon: '👩‍👧‍👦', color: 'text-green-500' },
+                { from: 'tham', to: 'jeff', type: 'เพื่อนสนิท / ที่ปรึกษา', icon: '🧠', color: 'text-blue-500' },
+            ];
+
+            const getChartCharacter = (id) => chartCharacters.find(char => char.id === id);
+
+            const getRelationshipsForCharacter = (charId) => {
+                return relationshipsData.filter(rel => {
+                    if (rel.from === charId || rel.to === charId) {
+                        if (charId === 'mix' && rel.to === 'mix' && rel.type.includes('แอบชอบ')) {
+                            return false;
+                        }
+                        return true;
+                    }
+                    return false;
+                })
+                .map(rel => {
+                    const otherCharId = rel.from === charId ? rel.to : rel.from;
+                    const otherChar = allCharactersData[otherCharId];
+
+                    return {
+                        otherCharName: otherChar ? otherChar.name : 'Unknown',
+                        type: rel.type,
+                        icon: rel.icon,
+                        color: rel.color,
+                    };
+                });
+            };
+
+            const CharacterCard = ({ charId, onClick }) => {
+                const char = getChartCharacter(charId);
+                const fullCharData = allCharactersData[charId];
+
+                if (!char || !fullCharData) return null;
+
+                const relationships = getRelationshipsForCharacter(charId);
+
+                return React.createElement(
+                    "div",
+                    {
+                        className: `flex flex-col items-center p-4 rounded-xl ${char.color} border-2 ${char.borderColor} shadow-md cursor-pointer transform transition duration-200 hover:scale-105`,
+                        onClick: () => onClick(char.id),
+                    },
+                    React.createElement("span", { className: "text-4xl mb-2" }, char.emoji),
+                    React.createElement("h4", { className: "font-bold text-lg text-gray-800 text-center" }, fullCharData.name),
+                    relationships.length > 0 && (
+                        React.createElement(
+                            "div",
+                            { className: "mt-2 text-sm w-full text-center" },
+                            relationships.map((r, idx) =>
+                                React.createElement(
+                                    "p",
+                                    { key: idx, className: `flex items-center justify-center ${r.color}` },
+                                    React.createElement("span", { className: "mr-1" }, r.icon),
+                                    " ",
+                                    r.type,
+                                    " กับ ",
+                                    r.otherCharName
+                                )
+                            )
+                        )
+                    )
+                );
+            };
+
+            return React.createElement(
+                "div",
+                { className: "p-4 bg-pink-50 rounded-lg shadow-inner" },
+                React.createElement("h2", { className: "text-3xl font-bold text-pink-700 text-center mb-6" }, "แผนผังความสัมพันธ์"),
+                React.createElement(
+                    "div",
+                    { className: "mb-8 flex flex-col items-center" },
+                    React.createElement("h3", { className: "text-2xl font-semibold text-purple-600 mb-4" }, "ตัวละครหลัก"),
+                    React.createElement(CharacterCard, { charId: "mix", onClick: onCharacterClick })
+                ),
+                React.createElement(
+                    "div",
+                    { className: "mb-8" },
+                    React.createElement("h3", { className: "text-2xl font-semibold text-purple-600 mb-4 text-center" }, "คนรัก"),
+                    React.createElement(
+                        "div",
+                        { className: "grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center" },
+                        React.createElement(CharacterCard, { charId: "jeff", onClick: onCharacterClick }),
+                        React.createElement(CharacterCard, { charId: "james", onClick: onCharacterClick })
+                    )
+                ),
+                React.createElement(
+                    "div",
+                    { className: "mb-8" },
+                    React.createElement("h3", { className: "text-2xl font-semibold text-purple-600 mb-4 text-center" }, "ครอบครัวและเพื่อนสนิท"),
+                    React.createElement(
+                        "div",
+                        { className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center" },
+                        React.createElement(CharacterCard, { charId: "mike", onClick: onCharacterClick }),
+                        React.createElement(CharacterCard, { charId: "ting", onClick: onCharacterClick }),
+                        React.createElement(CharacterCard, { charId: "mek_kus", onClick: onCharacterClick }),
+                        React.createElement(CharacterCard, { charId: "so", onClick: onCharacterClick }),
+                        React.createElement(CharacterCard, { charId: "nice", onClick: onCharacterClick }),
+                        React.createElement(CharacterCard, { charId: "mark", onClick: onCharacterClick }),
+                        React.createElement(CharacterCard, { charId: "arling", onClick: onCharacterClick }),
+                        React.createElement(CharacterCard, { charId: "tham", onClick: onCharacterClick })
+                    )
+                ),
+                React.createElement(
+                    "div",
+                    { className: "mb-8" },
+                    React.createElement("h3", { className: "text-2xl font-semibold text-purple-600 mb-4 text-center" }, "ความสัมพันธ์อื่นๆ"),
+                    React.createElement(
+                        "div",
+                        { className: "grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center" },
+                        React.createElement(CharacterCard, { charId: "safe", onClick: onCharacterClick }),
+                        React.createElement(CharacterCard, { charId: "boss", onClick: onCharacterClick })
+                    )
+                ),
+                React.createElement("p", { className: "text-center text-sm text-gray-500 mt-4" }, "* คลิกที่การ์ดตัวละครเพื่อดูโปรไฟล์ย่อ")
+            );
+        };
+
+        // Private Chat Component
+        const PrivateChat = ({ allCharactersData }) => {
+            const [selectedCharacterId, setSelectedCharacterId] = React.useState('');
+            const [chatHistory, setChatHistory] = React.useState([]);
+            const [userInput, setUserInput] = React.useState('');
+            const [isLoading, setIsLoading] = React.useState(false);
+            const chatEndRef = React.useRef(null);
+
+            // Filter characters for private chat dropdown
+            const chatableCharacters = Object.values(allCharactersData).filter(char =>
+                !['mek_kus', 'arling', 'tham', 'safe', 'boss'].includes(char.id)
+            );
+
+            // Scroll to the latest message
+            React.useEffect(() => {
+                chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }, [chatHistory]);
+
+            const handleSendMessage = async () => {
+                if (!userInput.trim() || !selectedCharacterId) return;
+
+                const userMessage = { role: 'user', text: userInput };
+                setChatHistory((prev) => [...prev, userMessage]);
+                setUserInput('');
+                setIsLoading(true);
+
+                const selectedChar = allCharactersData[selectedCharacterId];
+                if (!selectedChar) {
+                    console.error("Selected character not found.");
+                    setIsLoading(false);
+                    return;
+                }
+
+                
+                if (apiKey === "AIzaSyCCTcn7ECaJF1cmODYuhaW924Jrp6apagY" || !apiKey) {
+                    setChatHistory((prev) => [...prev, { role: 'model', text: 'โปรดใส่ API Key ของคุณในโค้ดก่อนใช้งานแชท', characterName: selectedChar.name }]);
+                    setIsLoading(false);
+                    return;
+                }
+
+                // Construct chat history for the API call
+                let apiChatHistory = [];
+                chatHistory.forEach(msg => {
+                    apiChatHistory.push({ role: msg.role, parts: [{ text: msg.text }] });
+                });
+                apiChatHistory.push({ role: "user", parts: [{ text: userInput }] }); // Add current user input
+
+                const prompt = `You are ${selectedChar.name}. Your persona is: ${selectedChar.personality}. Your general information is: ${JSON.stringify(selectedChar.general)}. Your background is: ${selectedChar.background}. Your hobbies are: ${selectedChar.hobbies}. Your feelings are: ${selectedChar.feelings}. Your values are: ${selectedChar.values}. Your strengths are: ${selectedChar.strengths}. Your weaknesses are: ${selectedChar.weaknesses}. Your charm is: ${selectedChar.charm}. Your current status is: ${selectedChar.currentStatus}. Your thoughts are: ${selectedChar.thoughts}. Your important over rules are: ${selectedChar.importantOverRules}. Your hardest is: ${selectedChar.hardest}. Your management is: ${selectedChar.management}. Your family structure is: ${selectedChar.familyStructure}. Your speech style is: ${selectedChar.speechStyle}. Your pronouns are: ${selectedChar.pronouns}. Your catchphrase is: "${selectedChar.catchphrase}".\n\nBased on your persona and the conversation history, respond to the user's last message. Keep your response concise and in character. Do not break character.`;
+
+                const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const aiResponseText = result.candidates[0].content.parts[0].text;
+                        setChatHistory((prev) => [...prev, { role: 'model', text: aiResponseText, characterName: selectedChar.name }]);
+                    } else {
+                        setChatHistory((prev) => [...prev, { role: 'model', text: 'ขออภัย ฉันไม่สามารถตอบได้ในขณะนี้', characterName: selectedChar.name }]);
+                        console.error("Unexpected API response structure:", result);
+                    }
+                } catch (error) {
+                    console.error("Error calling Gemini API:", error);
+                    setChatHistory((prev) => [...prev, { role: 'model', text: 'เกิดข้อผิดพลาดในการเชื่อมต่อ', characterName: selectedChar.name }]);
+                } finally {
+                    setIsLoading(false);
+                }
+            };
+
+            return React.createElement(
+                "div",
+                { className: "flex flex-col h-[600px] bg-white rounded-lg shadow-inner border border-purple-200" },
+                React.createElement(
+                    "div",
+                    { className: "p-4 border-b border-purple-200 flex items-center justify-between" },
+                    React.createElement("h3", { className: "text-xl font-semibold text-purple-700" }, "แชทส่วนตัว"),
+                    React.createElement(
+                        "select",
+                        {
+                            value: selectedCharacterId,
+                            onChange: (e) => {
+                                setSelectedCharacterId(e.target.value);
+                                setChatHistory([]); // Clear chat history when character changes
+                            },
+                            className: "px-3 py-2 rounded-full bg-purple-100 text-purple-800 font-semibold cursor-pointer appearance-none focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-md",
+                        },
+                        React.createElement("option", { value: "" }, "เลือกตัวละคร"),
+                        chatableCharacters.map((char) =>
+                            React.createElement(
+                                "option",
+                                { key: char.id, value: char.id },
+                                char.name
+                            )
+                        )
+                    )
+                ),
+                React.createElement(
+                    "div",
+                    { className: "flex-1 overflow-y-auto p-4 space-y-3" },
+                    chatHistory.length === 0 && selectedCharacterId && !isLoading && (
+                        React.createElement("p", { className: "text-center text-gray-500 italic" }, "เริ่มการสนทนากับ ", allCharactersData[selectedCharacterId]?.name, " ได้เลย!")
+                    ),
+                    chatHistory.map((message, index) =>
+                        React.createElement(
+                            "div",
+                            {
+                                key: index,
+                                className: `flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`,
+                            },
+                            React.createElement(
+                                "div",
+                                {
+                                    className: `max-w-[70%] p-3 rounded-lg shadow-sm chat-message ${
+                                        message.role === 'user'
+                                            ? 'bg-pink-300 text-white'
+                                            : 'bg-purple-100 text-gray-800'
+                                    }`,
+                                },
+                                message.characterName && message.role === 'model' && (
+                                    React.createElement(
+                                        "span",
+                                        { className: "font-bold text-purple-700 block mb-1" },
+                                        message.characterName,
+                                        ":"
+                                    )
+                                ),
+                                message.text
+                            )
+                        )
+                    ),
+                    isLoading && (
+                        React.createElement(
+                            "div",
+                            { className: "flex justify-start" },
+                            React.createElement(
+                                "div",
+                                { className: "max-w-[70%] p-3 rounded-lg bg-purple-100 text-gray-800 shadow-sm animate-pulse" },
+                                "กำลังพิมพ์..."
+                            )
+                        )
+                    ),
+                    React.createElement("div", { ref: chatEndRef })
+                ),
+                React.createElement(
+                    "div",
+                    { className: "p-4 border-t border-purple-200 flex" },
+                    React.createElement("input", {
+                        type: "text",
+                        className: "flex-1 p-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400",
+                        placeholder: selectedCharacterId ? `พิมพ์ข้อความถึง ${allCharactersData[selectedCharacterId]?.name}...` : "เลือกตัวละครเพื่อเริ่มแชท",
+                        value: userInput,
+                        onChange: (e) => setUserInput(e.target.value),
+                        onKeyPress: (e) => e.key === 'Enter' && handleSendMessage(),
+                        disabled: !selectedCharacterId || isLoading,
+                    }),
+                    React.createElement(
+                        "button",
+                        {
+                            onClick: handleSendMessage,
+                            className: "px-6 py-3 bg-purple-600 text-white rounded-r-lg font-semibold hover:bg-purple-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-md",
+                            disabled: !selectedCharacterId || isLoading || !userInput.trim(),
+                        },
+                        "ส่ง"
+                    )
+                )
+            );
+        };
+
+        // Group Chat Component
+        const GroupChat = ({ allCharactersData }) => {
+            const [chatHistory, setChatHistory] = React.useState([]);
+            const [userInput, setUserInput] = React.useState('');
+            const [isLoading, setIsLoading] = React.useState(false);
+            const chatEndRef = React.useRef(null);
+
+            // Characters participating in the group chat (excluding Mek/Kus as they are children, and others not primary chatters)
+            const groupChatCharacters = Object.values(allCharactersData).filter(char =>
+                !['mek_kus', 'arling', 'tham', 'safe', 'boss'].includes(char.id)
+            );
+
+            // Scroll to the latest message
+            React.useEffect(() => {
+                chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }, [chatHistory]);
+
+            const handleSendMessage = async () => {
+                if (!userInput.trim()) return;
+
+                const userMessage = { role: 'user', text: userInput };
+                setChatHistory((prev) => [...prev, userMessage]);
+                setUserInput('');
+                setIsLoading(true);
+
+        
+                if (apiKey === "AIzaSyCCTcn7ECaJF1cmODYuhaW924Jrp6apagY" || !apiKey) {
+                    setChatHistory((prev) => [...prev, { role: 'model', text: 'โปรดใส่ API Key ของคุณในโค้ดก่อนใช้งานแชท' }]);
+                    setIsLoading(false);
+                    return;
+                }
+
+                // Prepare personas for the group chat prompt
+                const personas = groupChatCharacters.map(char =>
+                    `${char.name} (MBTI: ${char.mbti || 'N/A'}): ${char.personality}`
+                ).join('\n');
+
+                // Construct current chat history for the API prompt
+                const currentConversation = chatHistory.map(msg =>
+                    msg.role === 'user' ? `User: ${msg.text}` : `${msg.characterName}: ${msg.text}`
+                ).join('\n');
+
+                const prompt = `You are facilitating a group chat with the following characters:\n${personas}\n\nThe current conversation is:\n${currentConversation}\nUser: ${userInput}\n\nPlease continue the conversation. Have 2-3 characters respond naturally to the user and each other, reflecting their distinct personalities. Format each response as "Character Name: message". Ensure responses are concise and in character.`;
+
+                const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const aiResponseText = result.candidates[0].content.parts[0].text;
+                        // Parse the multi-character response
+                        const newMessages = aiResponseText.split('\n').filter(line => line.includes(':')).map(line => {
+                            const [charName, ...msgParts] = line.split(':');
+                            return { role: 'model', text: msgParts.join(':').trim(), characterName: charName.trim() };
+                        });
+                        setChatHistory((prev) => [...prev, ...newMessages]);
+                    } else {
+                        setChatHistory((prev) => [...prev, { role: 'model', text: 'ขออภัย ฉันไม่สามารถจำลองการสนทนากลุ่มได้ในขณะนี้' }]);
+                        console.error("Unexpected API response structure:", result);
+                    }
+                } catch (error) {
+                    console.error("Error calling Gemini API:", error);
+                    setChatHistory((prev) => [...prev, { role: 'model', text: 'เกิดข้อผิดพลาดในการเชื่อมต่อ' }]);
+                } finally {
+                    setIsLoading(false);
+                }
+            };
+
+            return React.createElement(
+                "div",
+                { className: "flex flex-col h-[600px] bg-white rounded-lg shadow-inner border border-pink-200" },
+                React.createElement(
+                    "div",
+                    { className: "p-4 border-b border-pink-200" },
+                    React.createElement("h3", { className: "text-xl font-semibold text-pink-700" }, "แชทกลุ่ม"),
+                    React.createElement("p", { className: "text-sm text-gray-600 mt-1" }, "ตัวละครในกลุ่ม: ", groupChatCharacters.map(char => char.name).join(', '))
+                ),
+                React.createElement(
+                    "div",
+                    { className: "flex-1 overflow-y-auto p-4 space-y-3" },
+                    chatHistory.length === 0 && !isLoading && (
+                        React.createElement("p", { className: "text-center text-gray-500 italic" }, "เริ่มการสนทนากลุ่มได้เลย!")
+                    ),
+                    chatHistory.map((message, index) =>
+                        React.createElement(
+                            "div",
+                            {
+                                key: index,
+                                className: `flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`,
+                            },
+                            React.createElement(
+                                "div",
+                                {
+                                    className: `max-w-[70%] p-3 rounded-lg shadow-sm chat-message ${
+                                        message.role === 'user'
+                                            ? 'bg-pink-300 text-white'
+                                            : 'bg-green-100 text-gray-800'
+                                    }`,
+                                },
+                                message.characterName && message.role === 'model' && (
+                                    React.createElement(
+                                        "span",
+                                        { className: "font-bold text-green-700 block mb-1" },
+                                        message.characterName,
+                                        ":"
+                                    )
+                                ),
+                                message.text
+                            )
+                        )
+                    ),
+                    isLoading && (
+                        React.createElement(
+                            "div",
+                            { className: "flex justify-start" },
+                            React.createElement(
+                                "div",
+                                { className: "max-w-[70%] p-3 rounded-lg bg-green-100 text-gray-800 shadow-sm animate-pulse" },
+                                "กำลังพิมพ์..."
+                            )
+                        )
+                    ),
+                    React.createElement("div", { ref: chatEndRef })
+                ),
+                React.createElement(
+                    "div",
+                    { className: "p-4 border-t border-pink-200 flex" },
+                    React.createElement("input", {
+                        type: "text",
+                        className: "flex-1 p-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400",
+                        placeholder: "พิมพ์ข้อความในกลุ่ม...",
+                        value: userInput,
+                        onChange: (e) => setUserInput(e.target.value),
+                        onKeyPress: (e) => e.key === 'Enter' && handleSendMessage(),
+                        disabled: isLoading,
+                    }),
+                    React.createElement(
+                        "button",
+                        {
+                            onClick: handleSendMessage,
+                            className: "px-6 py-3 bg-pink-600 text-white rounded-r-lg font-semibold hover:bg-pink-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-md",
+                            disabled: isLoading || !userInput.trim(),
+                        },
+                        "ส่ง"
+                    )
+                )
+            );
+        };
+
+
+        // Main App Component
+        const App = () => {
+            const [activeTab, setActiveTab] = React.useState('profile'); // 'profile', 'relationship', 'privateChat', 'groupChat'
+            const [selectedCharacterId, setSelectedCharacterId] = React.useState('mix');
+            const [miniProfileCharacter, setMiniProfileCharacter] = React.useState(null);
+
+            const handleCharacterClick = (characterId) => {
+                setMiniProfileCharacter(allCharactersData[characterId]);
+            };
+
+            const handleCloseMiniProfile = () => {
+                setMiniProfileCharacter(null);
+            };
+
+            const excludedProfileCharacters = ['arling', 'tham', 'safe', 'boss', 'mek_kus'];
+
+            return React.createElement(
+                React.Fragment,
+                null,
+                React.createElement(
+                    "div",
+                    { className: "min-h-screen bg-gradient-to-br from-purple-100 to-pink-100 p-4 font-mali text-gray-800 relative overflow-hidden" },
+                    /* Sticker Decorations */
+                    React.createElement(StickerDecoration, { emoji: "💖", top: 5, left: 10, rotate: -15, size: 40 }),
+                    React.createElement(StickerDecoration, { emoji: "✨", top: 20, left: 85, rotate: 20, size: 35 }),
+                    React.createElement(StickerDecoration, { emoji: "🌸", top: 50, left: 5, rotate: -5, size: 45 }),
+                    React.createElement(StickerDecoration, { emoji: "💫", top: 75, left: 90, rotate: -25, size: 30 }),
+                    React.createElement(StickerDecoration, { emoji: "🎀", top: 10, left: 60, rotate: 10, size: 50 }),
+                    React.createElement(StickerDecoration, { emoji: "❤️", top: 40, left: 20, rotate: -8, size: 30 }),
+                    React.createElement(StickerDecoration, { emoji: "⭐", top: 85, left: 15, rotate: 30, size: 40 }),
+                    React.createElement(StickerDecoration, { emoji: "💕", top: 30, left: 50, rotate: 15, size: 35 }),
+                    React.createElement(StickerDecoration, { emoji: "🌈", top: 60, left: 70, rotate: -10, size: 45 }),
+                    React.createElement(StickerDecoration, { emoji: "🌼", top: 15, left: 30, rotate: -20, size: 30 }),
+                    React.createElement(
+                        "div",
+                        { className: "max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden relative z-10" },
+                        React.createElement(
+                            "div",
+                            { className: "flex flex-wrap justify-center p-4 bg-purple-200" },
+                            React.createElement(
+                                "button",
+                                {
+                                    onClick: () => setActiveTab('profile'),
+                                    className: `px-4 py-2 m-1 rounded-full text-base font-semibold transition-all duration-300 ${
+                                        activeTab === 'profile'
+                                            ? 'bg-purple-600 text-white shadow-md'
+                                            : 'bg-purple-300 text-purple-800 hover:bg-purple-400'
+                                    }`,
+                                },
+                                "โปรไฟล์ตัวละคร"
+                            ),
+                            React.createElement(
+                                "button",
+                                {
+                                    onClick: () => setActiveTab('relationship'),
+                                    className: `px-4 py-2 m-1 rounded-full text-base font-semibold transition-all duration-300 ${
+                                        activeTab === 'relationship'
+                                            ? 'bg-pink-600 text-white shadow-md'
+                                            : 'bg-pink-300 text-pink-800 hover:bg-pink-400'
+                                    }`,
+                                },
+                                "แผนผังความสัมพันธ์"
+                            ),
+                            React.createElement(
+                                "button",
+                                {
+                                    onClick: () => setActiveTab('privateChat'),
+                                    className: `px-4 py-2 m-1 rounded-full text-base font-semibold transition-all duration-300 ${
+                                        activeTab === 'privateChat'
+                                            ? 'bg-blue-600 text-white shadow-md'
+                                            : 'bg-blue-300 text-blue-800 hover:bg-blue-400'
+                                    }`,
+                                },
+                                "แชทส่วนตัว"
+                            ),
+                            React.createElement(
+                                "button",
+                                {
+                                    onClick: () => setActiveTab('groupChat'),
+                                    className: `px-4 py-2 m-1 rounded-full text-base font-semibold transition-all duration-300 ${
+                                        activeTab === 'groupChat'
+                                            ? 'bg-green-600 text-white shadow-md'
+                                            : 'bg-green-300 text-green-800 hover:bg-green-400'
+                                    }`,
+                                },
+                                "แชทกลุ่ม"
+                            ),
+                            activeTab === 'profile' && (
+                                React.createElement(
+                                    "select",
+                                    {
+                                        value: selectedCharacterId,
+                                        onChange: (e) => setSelectedCharacterId(e.target.value),
+                                        className: "ml-2 px-3 py-2 m-1 rounded-full bg-gradient-to-r from-pink-300 to-purple-300 text-purple-900 font-semibold cursor-pointer appearance-none focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-md border border-pink-500",
+                                    },
+                                    Object.keys(allCharactersData)
+                                        .filter(key => !excludedProfileCharacters.includes(key))
+                                        .map((key) =>
+                                            React.createElement(
+                                                "option",
+                                                { key: key, value: key },
+                                                allCharactersData[key].name
+                                            )
+                                        )
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "p-6" },
+                            activeTab === 'profile' ? (
+                                React.createElement(CharacterProfile, { character: allCharactersData[selectedCharacterId] })
+                            ) : activeTab === 'relationship' ? (
+                                React.createElement(RelationshipChart, { onCharacterClick: handleCharacterClick })
+                            ) : activeTab === 'privateChat' ? (
+                                React.createElement(PrivateChat, { allCharactersData: allCharactersData })
+                            ) : (
+                                React.createElement(GroupChat, { allCharactersData: allCharactersData })
+                            )
+                        )
+                    ),
+                    /* Mini Profile Pop-up */
+                    miniProfileCharacter && (
+                        React.createElement(MiniCharacterProfile, { character: miniProfileCharacter, onClose: handleCloseMiniProfile })
+                    )
+                )
+            );
+        };
+
+        // Render the App component into the root div
+        ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
+    </script>
+</body>
+</html>
+
